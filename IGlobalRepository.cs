@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace ImmoSales.Repositories.Repositories.Global
+namespace YourProject.Repositories.Global
 {
     public interface IGlobalRepository
     {
