@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-namespace ImmoSales.Repositories.Repositories.Global
+namespace YourProject.Repositories.Global
 {
     public class GlobalRepository : IGlobalRepository
     {
