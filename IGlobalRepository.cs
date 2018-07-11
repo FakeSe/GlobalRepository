@@ -8,6 +8,28 @@ namespace YourProject.Repositories.Global
 {
     public interface IGlobalRepository
     {
+        
+        /// <summary>
+        /// Will Add the given entity
+        /// </summary>
+        /// <param name="itemToAdd">Entity</param>
+        /// <returns>The added ENTITY</returns>
+        object Add<T>(T itemToAdd) where T : class;
+        
+        /// <summary>
+        /// Will Add the given list of entities
+        /// </summary>
+        /// <param name="itemsToAdd">A list of entities</param>
+        /// <returns>The added list</returns>
+        object AddRange<T>(List<T> itemsToAdd) where T : class;
+        
+        /// <summary>
+        /// Will simply update any Model without any effort
+        /// </summary>
+        /// <param name="itemToUpdate">Send any Model here the method will determinate it type and update it then it will svae the changes</param>
+        /// <returns>The updated object</returns>
+        object SimpleUpdate<T>(T itemToUpdate) where T : class;
+
         /// <summary>
         /// Will update any Model without replacing data with null or foreign keys with 0 in case the user didn't add them
         /// </summary>
