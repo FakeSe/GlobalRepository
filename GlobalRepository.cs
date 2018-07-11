@@ -15,7 +15,21 @@ namespace YourProject.Repositories.Global
         {
             _dbContext = dbContext;
         }
+        
+        public object AddRange<T>(List<T> itemsToAdd) where T : class
+        {
+            _dbContext.Set<T>().AddRange(itemsToAdd);
+            _dbContext.SaveChanges();
+            return itemsToAdd;
+        }
 
+        public object Add<T>(T itemToAdd) where T : class
+        {
+            _dbContext.Set<T>().Add(itemToAdd);
+            _dbContext.SaveChanges();
+            return itemToAdd;
+        }
+        
         public IQueryable<T> Get<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes) where T : class
         {
             var query = _dbContext.Set<T>().AsNoTracking();
@@ -49,6 +63,13 @@ namespace YourProject.Repositories.Global
             itemToDelete.DeletedAt = DateTime.Now;
             SmartUpdate(itemToDelete);
             return itemToDelete;
+        }
+        
+        public object SimpleUpdate<T>(T itemToUpdate) where T : class
+        {
+            _dbContext.Set<T>().Update(itemToUpdate);
+            _dbContext.SaveChanges();
+            return itemToUpdate;
         }
 
         public object SmartUpdate(BaseEntity itemToUpdate)
