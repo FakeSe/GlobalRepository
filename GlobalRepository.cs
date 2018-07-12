@@ -96,12 +96,9 @@ namespace YourProject.Repositories.Global
                     var itemProprity = itemToUpdate.GetType().GetProperties().Where(p => p.Name.Equals(propertyInfo.Name)).First();
                     var currentItem = itemProprity.GetValue(itemToUpdate);
                     if (currentItem != null)
-                    {
-                        var test = currentItem.ToString();
-
                         if (!(itemProprity.Name.Contains("Id") && currentItem.ToString() == "0"))
-                            propertyInfo.SetValue(aux, itemProprity.GetValue(itemToUpdate));
-                    }
+                            if (propertyInfo.CanWrite && propertyInfo.GetSetMethod(true).IsPublic)
+                                    propertyInfo.SetValue(aux, itemProprity.GetValue(itemToUpdate));
                       
                 }
                 _dbContext.SaveChanges();
